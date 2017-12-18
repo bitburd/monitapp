@@ -1,0 +1,44 @@
+{# HTML5 declaration #}
+<!DOCTYPE html>
+<html>
+
+<head>
+ <meta charset="UTF-8"></meta>
+ <title>{% block title %} monitapp {% endblock title %} | workstation monitoring</title>
+ <link rel="stylesheet" href="http://10.0.0.244/monitapp/static/css/monit.css"></link>
+ <script src="http://10.0.0.244/monitapp/static/js/jquery.min.js"></script>
+ <script src="http://10.0.0.244/monitapp/static/js/monit.js"></script>
+</head>
+
+<body>
+    <center><h2>monitapp workstation monitoring</h2></center>
+    {# Navigation Menu #}
+    <p>
+    <header>
+                        {% if loginusername != 'guest' %}
+                            <a href="/logout/">Logout</a>&nbsp
+                            <a href="/monitapp/status/" class="p-r-none">Host status</a>
+                            <a href="/admin/" class="p-r-none">NewAccount</a>
+                        {% else %}
+                            <a href="/login/">Login</a>&nbsp
+                            <a href="/monitapp/status/" class="p-r-none">Host status</a>
+                            <a href="/admin/auth/user/add/" class="p-r-none">NewAccount</a>
+                        {% endif %}
+    </header>
+    </p>
+
+    {# The Document Body #}
+    <div id="site-wrapper">
+        {% block content %}
+        {% endblock content %}
+    </div>
+
+    {# The Footer #}
+    <div class="footer">
+        <div class="container">
+            <p><!-- Copyright 2017 The Public Group</p> -->
+        </div>
+    </div>
+</body>
+
+

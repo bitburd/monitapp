@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+ <meta charset="UTF-8">
+ <style>
+ body {
+    color: black;
+    font-family: verdana;
+    font-size: 100%;
+ }
+ h1 {
+    color: black;
+    font-family: verdana;
+    font-size: 160%;
+ }
+ p  {
+    color: black;
+    font-family: verdana;
+    font-size: 100%;
+ }
+ div {
+    color: black;
+    background-color: Azure;
+    width: 410px;
+ }
+ </style>
+ <script src="jquery.min.js"></script>
+ <script type="text/javascript">
+ function insertReply(content)
+ {
+     console.log("insertReply()");
+     document.getElementById('showCD').innerHTML = content;
+ }
+ function insertHost(host) {
+    console.log("insertHost()");
+    // create script element
+    var script = document.createElement('script');
+    // assing src with callback name
+    script.src = 'http://10.0.0.236:2812/_status?format=json?callback=insertReply';
+    var divtext = document.getElementById('divtext');
+    // load to document and load monit contents to div..
+    $.ajax({
+    type: "GET",
+    url: script.src,
+    dataType: "jsonp",
+    }).success( function( data ) {
+       divtext.innerHTML += data;
+    });
+ }
+ </script>
+</head>
+
+<body onload="insertHost('10.0.0.236')">
+
+<p><b><center>monit API index</center></b></p>
+<center>
+<div id='showCD'>
+ <div id='divtext' width=99px> &nbsp </div> 
+</div>
+</center>
+
+</body>
+
+</html>
+

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="http://10.0.0.244/monitapp/static/css/monituser.css"></link>
+  <meta encoding="UTF-8"></meta>
+  <title> monitoring server login </title>
+   <script language="JavaScript">
+   cookie_name = "dataCookie";
+   var YouEntered;
+   var YouWrote;
+
+   function getName() {
+     if(document.cookie)
+     {
+       index = document.cookie.indexOf(cookie_name);
+       if (index != -1)
+       {
+	 namestart = (document.cookie.indexOf("=", index) + 1);
+         nameend = document.cookie.indexOf(";", index);
+         if (nameend == -1) {
+	    nameend = document.cookie.length;
+         }
+         YouWrote = document.cookie.substring(namestart, nameend);
+         return YouWrote;
+       }
+     }
+   }
+
+
+   function putCookie() {
+      console.log("putting cookie..");
+      if(document.cookie != document.cookie){
+	 index = document.cookie.indexOf(cookie_name);
+      }
+      else { 
+         index = -1;
+      }
+
+      YouWrote=getName();
+      if (YouWrote == "dataCookie")
+      {
+         console.log(YouWrote);
+      }
+
+      if (index == -1){
+	 YouEntered=document.login.username.value;
+	 document.cookie=cookie_name+"="+YouEntered+"; expires=Monday, 04-Apr-2080 05:00:00 GMT";
+      }
+   }
+   </script>
+
+<body>
+<b>
+
+<div name="loginbox" width=200px id="logindiv">
+
+<center><b>Workstation Monitoring Admin Login<b>
+<p>
+
+<form name="login">
+Username: <input type="text" name="username" size=20><br>
+Password: <input type="password" name="password" size=20><br>
+<input type="button" value="login" onClick="putCookie()">
+</form>
+
+</div>
+
+</body>
+</html>
+
